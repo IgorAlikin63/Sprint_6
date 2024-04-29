@@ -14,13 +14,13 @@ class TestOrderScooter:
             order_page.open_page(Urls.BASE_PAGE)
 
         with allure.step("Принять куки"):
-            order_page.accept_cookie()
+            order_page.accept_cookie(order_page.ACCEPT_COOKIE_BUTTON)
 
         with allure.step("Кликнуть на кнопку 'Заказать' в хедере страницы"):
             order_page.element_click(order_page.order_button_top)
 
         with allure.step("Проверить, что произошел переход на страницу заказа 'https://qa-scooter.praktikum-services.ru/order'"):
-            assert driver.current_url == Urls.MAKE_ORDER_PAGE
+            assert order_page.get_url() == Urls.MAKE_ORDER_PAGE
 
         with allure.step("Ввести имя в поле Имя"):
             order_page.send_keys_in_input(order_page.name_input, 'Борис')
@@ -78,16 +78,16 @@ class TestOrderScooter:
             order_page.open_page(Urls.BASE_PAGE)
 
         with allure.step("Принять куки"):
-            order_page.accept_cookie()
+            order_page.accept_cookie(order_page.ACCEPT_COOKIE_BUTTON)
 
         with allure.step("Проскроллить до раздела с вопросами"):
-            order_page.scroll_to_questions()
+            order_page.scroll_to_questions(order_page.question_header)
 
         with allure.step("Кликнуть на кнопку 'Заказать' в боттоме страницы"):
             order_page.element_click(order_page.order_button_bottom)
 
         with allure.step("Проверить, что произошел переход на страницу заказа 'https://qa-scooter.praktikum-services.ru/order'"):
-            assert driver.current_url == Urls.MAKE_ORDER_PAGE
+            assert order_page.get_url() == Urls.MAKE_ORDER_PAGE
 
         with allure.step("Ввести имя в поле Имя"):
             order_page.send_keys_in_input(order_page.name_input, 'Анна ')

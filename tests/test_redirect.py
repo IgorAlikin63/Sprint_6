@@ -2,7 +2,6 @@ import allure
 from pages.questions_page import QuestionsPage
 from conftest import driver
 from data import Urls
-import time
 
 class TestPageRedirect:
 
@@ -19,14 +18,11 @@ class TestPageRedirect:
         with allure.step("Кликнуть на логотип Яндекса"):
             redirect_to_dzen_page.element_click(redirect_to_dzen_page.yandex_logo)
 
-        with allure.step("Ожидание загрузки странички в фоне по таймауту"):
-            time.sleep(3)
-
-        with allure.step("Переключиться на вторую открытую вкладку в браузере"):
-            redirect_to_dzen_page.driver.switch_to.window(driver.window_handles[1])
+        with allure.step("Дождаться открытия окна Дзена"):
+            redirect_to_dzen_page.new_window_created()
 
         with allure.step("Проверить, что открыта страница Дзен 'https://dzen.ru/?yredirect=true'"):
-            assert driver.current_url == Urls.DZEN_PAGE
+            assert redirect_to_dzen_page.get_url() == Urls.DZEN_PAGE
 
     @allure.title("Проверка, что при клике на логотип Самокат происходит переход на главную страницу")
     @allure.description("Тест проверяет, что при клике на логотип Самокат происходит возвращение на главную страницу сервиса")
@@ -45,7 +41,7 @@ class TestPageRedirect:
             redirect_to_question_page.element_click(redirect_to_question_page.scooter_logo)
 
         with allure.step("Проверить, что вернулись на главную страницу 'https://qa-scooter.praktikum-services.ru/'"):
-            assert driver.current_url == Urls.BASE_PAGE
+            assert redirect_to_question_page.get_url() == Urls.BASE_PAGE
 
 
 

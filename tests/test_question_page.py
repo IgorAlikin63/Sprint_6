@@ -28,10 +28,10 @@ class TestQuestionsAndAnswers:
             question_page.open_page(Urls.BASE_PAGE)
 
         with allure.step("Принять куки на страничке"):
-            question_page.accept_cookie()
+            question_page.accept_cookie(question_page.ACCEPT_COOKIE_BUTTON)
 
         with allure.step("Проскроллить до раздела 'Вопросы о важном' "):
-            question_page.scroll_to_questions()
+            question_page.scroll_to_questions(question_page.question_header)
 
         with allure.step("Подождать пока отобразится список вопросов "):
             question_page.wait_for_element_visibility(question_page.question_buttons, question_number)

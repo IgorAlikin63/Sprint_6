@@ -1,8 +1,10 @@
 from pages.base_page import BasePageScooter
 from selenium.webdriver.common.by import By
+import allure
 
 class ScooterOrderPage(BasePageScooter):
 
+    ACCEPT_COOKIE_BUTTON = (By.ID, "rcc-confirm-button")
     order_button_bottom = (By.XPATH, './/button[contains(@class,"Button_Button__ra12g Button_UltraBig__UU3Lp")][text()="Заказать"]')
     question_header = (By.XPATH, "//div[text()='Вопросы о важном']")
     name_input = (By.XPATH, "//input[@placeholder='* Имя']")
@@ -22,9 +24,7 @@ class ScooterOrderPage(BasePageScooter):
     order_decline_button_in_window = (By.XPATH, "//button[@class='Button_Button__ra12g Button_Middle__1CSJM Button_Inverted__3IF-i' and text()='Нет']")
     order_confirmation_header = (By.XPATH, "//div[@class='Order_ModalHeader__3FDaJ' and text()='Заказ оформлен']")
 
-    def scroll_to_questions(self):
-        self.driver.execute_script("arguments[0].scrollIntoView(true);", self.wait_and_find_element(self.question_header))
-
+    @allure.step("Найти инпут, отправить в него значение")
     def send_keys_in_input(self, locator, text):
         input_element = self.wait_and_find_element(locator)
         input_element.send_keys(text)
