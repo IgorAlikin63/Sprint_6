@@ -7,9 +7,6 @@ from data import Urls
 
 class BasePageScooter:
 
-    scooter_logo = (By.CLASS_NAME, 'Header_LogoScooter__3lsAR')
-    yandex_logo = (By.CLASS_NAME, 'Header_LogoYandex__3TSOI')
-    order_button_top = (By.XPATH, '//button[@class = "Button_Button__ra12g"]')
 
     @allure.step("Инициировать драйвер")
     def __init__(self, driver):
@@ -32,10 +29,6 @@ class BasePageScooter:
     def element_click(self, locator):
         self.driver.find_element(*locator).click()
 
-    @allure.step("Найти кнопку и кликнуть")
-    def accept_cookie(self, locator):
-        button = self.wait_and_find_element(locator)
-        button.click()
 
     @allure.step("Проскроллить до заголовка блока вопросов")
     def scroll_to_questions(self, locator):

@@ -6,6 +6,10 @@ class QuestionsPage(BasePageScooter):
 
     question_header = (By.XPATH, "//div[text()='Вопросы о важном']")
     ACCEPT_COOKIE_BUTTON = (By.ID, "rcc-confirm-button")
+    scooter_logo = (By.CLASS_NAME, 'Header_LogoScooter__3lsAR')
+    yandex_logo = (By.CLASS_NAME, 'Header_LogoYandex__3TSOI')
+    order_button_top = (By.XPATH, '//button[@class = "Button_Button__ra12g"]')
+
     question_buttons = {
         '1': (By.ID, 'accordion__heading-0'),
         '2': (By.ID, 'accordion__heading-1'),
@@ -40,5 +44,10 @@ class QuestionsPage(BasePageScooter):
         answer_locator = self.question_answers.get(question_number)
         answer = self.wait_and_find_element(answer_locator)
         return answer.text
+
+    @allure.step("Найти кнопку куки и кликнуть")
+    def accept_cookie(self, locator):
+        button = self.wait_and_find_element(locator)
+        button.click()
 
 

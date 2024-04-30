@@ -6,6 +6,7 @@ class ScooterOrderPage(BasePageScooter):
 
     ACCEPT_COOKIE_BUTTON = (By.ID, "rcc-confirm-button")
     order_button_bottom = (By.XPATH, './/button[contains(@class,"Button_Button__ra12g Button_UltraBig__UU3Lp")][text()="Заказать"]')
+    order_button_top = (By.XPATH, '//button[@class = "Button_Button__ra12g"]')
     question_header = (By.XPATH, "//div[text()='Вопросы о важном']")
     name_input = (By.XPATH, "//input[@placeholder='* Имя']")
     surname_input = (By.XPATH, "//input[@placeholder='* Фамилия']")
@@ -28,4 +29,9 @@ class ScooterOrderPage(BasePageScooter):
     def send_keys_in_input(self, locator, text):
         input_element = self.wait_and_find_element(locator)
         input_element.send_keys(text)
+
+    @allure.step("Найти кнопку куки и кликнуть")
+    def accept_cookie_for_order_page(self, locator):
+        button = self.wait_and_find_element(locator)
+        button.click()
 

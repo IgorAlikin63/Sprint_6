@@ -14,7 +14,7 @@ class TestOrderScooter:
             order_page.open_page(Urls.BASE_PAGE)
 
         with allure.step("Принять куки"):
-            order_page.accept_cookie(order_page.ACCEPT_COOKIE_BUTTON)
+            order_page.accept_cookie_for_order_page(order_page.ACCEPT_COOKIE_BUTTON)
 
         with allure.step("Кликнуть на кнопку 'Заказать' в хедере страницы"):
             order_page.element_click(order_page.order_button_top)
@@ -78,7 +78,7 @@ class TestOrderScooter:
             order_page.open_page(Urls.BASE_PAGE)
 
         with allure.step("Принять куки"):
-            order_page.accept_cookie(order_page.ACCEPT_COOKIE_BUTTON)
+            order_page.accept_cookie_for_order_page(order_page.ACCEPT_COOKIE_BUTTON)
 
         with allure.step("Проскроллить до раздела с вопросами"):
             order_page.scroll_to_questions(order_page.question_header)
